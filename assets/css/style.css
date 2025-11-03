@@ -1,19 +1,20 @@
 /* ==================== THEME VARIABLES (Warm, eye-friendly) ==================== */
 :root {
-    --bg-gradient-start: #eef2ff; /* indigo-50 */
-    --bg-gradient-end: #e0e7ff;   /* indigo-100 */
-    --brand: #4f46e5;             /* indigo-600 */
-    --brand-strong: #4338ca;      /* indigo-700 */
-    --text: #111827;              /* gray-900 */
-    --muted-text: #4b5563;        /* gray-600 */
+    --bg-gradient-start: #0b1026; /* deep navy */
+    --bg-gradient-mid: #1a1340;   /* royal violet */
+    --bg-gradient-end: #0a2a2a;   /* deep teal */
+    --brand: #7c3aed;             /* violet-600 */
+    --brand-strong: #5b21b6;      /* violet-800 */
+    --text: #111827;              /* gray-900 for white surfaces */
+    --muted-text: #6b7280;        /* gray-500 */
     --surface: #ffffff;
-    --surface-alt: #f8fafc;       /* slate-50 */
-    --border: #e5e7eb;            /* gray-200 */
-    --shadow: rgba(17, 24, 39, 0.08);
-    --hit: #16a34a;               /* green-600 */
-    --fault: #dc2626;             /* red-600 */
-    --replace: #f59e0b;           /* amber-500 */
-    --neutral: #94a3b8;           /* slate-400 */
+    --surface-alt: #f3f4f6;       /* gray-100 */
+    --border: #d1d5db;            /* gray-300 */
+    --shadow: rgba(0, 0, 0, 0.14);
+    --hit: #059669;               /* emerald-600 */
+    --fault: #e11d48;             /* rose-600 */
+    --replace: #d97706;           /* amber-600 */
+    --neutral: #64748b;           /* slate-500 */
 }
 
 /* ==================== GLOBAL STYLES ==================== */
@@ -25,7 +26,10 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+    background:
+        radial-gradient(1000px 600px at -10% -10%, rgba(124,58,237,0.18), transparent 60%), /* violet glow */
+        radial-gradient(900px 500px at 110% 10%, rgba(5,150,105,0.14), transparent 60%),     /* emerald glow */
+        linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-mid) 45%, var(--bg-gradient-end) 100%);
     min-height: 100vh;
     padding: 20px;
     color: var(--text);
@@ -42,8 +46,10 @@ body {
 
 /* ==================== HEADER ==================== */
 .header {
-    background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
-    color: var(--text);
+    background:
+        linear-gradient(135deg, rgba(124,58,237,0.35), rgba(5,150,105,0.35)),
+        linear-gradient(135deg, #1f114a 0%, #0a2a43 100%);
+    color: #f8fafc;
     padding: 24px 30px;
     text-align: center;
 }
@@ -75,7 +81,7 @@ body {
 
 .control-group {
     flex: 1;
-    min-width: 200px;
+    min-width: 220px;
 }
 
 .control-group label {
@@ -126,8 +132,8 @@ button {
 .btn-primary { background: var(--brand); color: white; }
 .btn-primary:hover { background: var(--brand-strong); transform: translateY(-1px); box-shadow: 0 6px 14px var(--shadow); }
 
-.btn-secondary { background: #64748b; color: white; }
-.btn-secondary:hover { background: #475569; transform: translateY(-1px); }
+.btn-secondary { background: #475569; color: white; }
+.btn-secondary:hover { background: #334155; transform: translateY(-1px); }
 
 .btn-success { background: var(--hit); color: white; }
 .btn-success:hover { background: #408a68; transform: translateY(-1px); }
@@ -263,8 +269,10 @@ canvas {
 
 /* ==================== CURRENT STEP INFO ==================== */
 .current-step-info {
-    background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
-    color: var(--text);
+    background:
+        linear-gradient(135deg, rgba(124,58,237,0.28), rgba(5,150,105,0.28)),
+        linear-gradient(135deg, #1a1340 0%, #0a2a2a 100%);
+    color: #f8fafc;
     padding: 18px;
     border-radius: 12px;
     margin-bottom: 0;

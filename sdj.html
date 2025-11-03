@@ -11,8 +11,7 @@
     <div class="container">
         <!-- HEADER SECTION -->
         <div class="header">
-            <h1>🖥️ Page Replacement Algorithm Visualizer</h1>
-            <p>Interactive Operating System Memory Management Simulator</p>
+            <h1>Page Replacement Algorithm Visualizer</h1>
         </div>
 
         <!-- CONTROL PANEL -->
@@ -21,10 +20,8 @@
                 <div class="control-group">
                     <label for="algorithm">Select Algorithm:</label>
                     <select id="algorithm">
-                        <option value="FIFO">FIFO (First-In-First-Out)</option>
                         <option value="LRU">LRU (Least Recently Used)</option>
                         <option value="OPTIMAL">Optimal Page Replacement</option>
-                        <option value="CLOCK">Clock (Second Chance)</option>
                     </select>
                 </div>
 
@@ -49,7 +46,7 @@
             <div class="control-row">
                 <div class="btn-group">
                     <button class="btn-success" id="initBtn">
-                        <span>🚀 Initialize Simulation</span>
+                        <span>Initialize Simulation</span>
                     </button>
                     <button class="btn-primary" id="playBtn" disabled>
                         <span>▶️ Play</span>
@@ -67,7 +64,7 @@
                         <span>🔄 Reset</span>
                     </button>
                     <button class="btn-success" id="exportBtn" disabled>
-                        <span>💾 Export Screenshot</span>
+                        <span>Export Screenshot</span>
                     </button>
                 </div>
             </div>
@@ -90,7 +87,7 @@
 
                 <!-- Timeline -->
                 <div class="timeline-container">
-                    <h4>📊 Execution Timeline (Click to Jump)</h4>
+                    <h4>Execution Timeline (Click to Jump)</h4>
                     <div class="timeline" id="timeline"></div>
                 </div>
             </div>
@@ -99,7 +96,7 @@
             <div class="stats-panel">
                 <!-- Real-time Statistics -->
                 <div class="stats-card">
-                    <h3>📈 Real-time Statistics</h3>
+                    <h3>Real-time Statistics</h3>
                     <div class="stat-item">
                         <span class="stat-label">Algorithm:</span>
                         <span class="stat-value" id="statAlgorithm">-</span>
@@ -148,7 +145,7 @@
 
                 <!-- Legend -->
                 <details class="disclosure legend">
-                    <summary>🎨 Color Legend</summary>
+                    <summary>➡️ Color Legend</summary>
                     <div class="legend-item">
                         <div class="legend-color" style="background: var(--brand);"></div>
                         <span>Current Page Reference</span>
@@ -173,7 +170,7 @@
 
                 <!-- Algorithm Information -->
                 <details class="disclosure">
-                    <summary>ℹ️ Algorithm Info</summary>
+                    <summary>➡️Algorithm Info</summary>
                     <div class="stats-card" style="border: none; padding: 0; margin: 0;">
                         <p id="algorithmInfo" style="line-height: 1.6; color: var(--muted-text);">
                             Select an algorithm and initialize the simulation to see detailed information.
