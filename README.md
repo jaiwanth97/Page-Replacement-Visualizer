@@ -1,6 +1,6 @@
 # Page Replacement Algorithm Visualizer
 
-Interactive visual simulator for Operating System page replacement algorithms (FIFO, LRU, Optimal, Clock). Built with vanilla HTML/CSS/JS.
+Interactive visual simulator for Operating System page replacement algorithms (LRU, Optimal). Built with vanilla HTML/CSS/JS.
 
 ## Features
 - Modern, accessible UI with a clean indigo theme

@@ -5,7 +5,7 @@
 - Open `sdj.html` directly in a modern browser (Chrome 90+, Edge 90+, Firefox 88+). No server or build needed.
 
 ## 2) User Interface Guide
-- Algorithm: Choose `FIFO`, `LRU`, `OPTIMAL`, or `CLOCK`.
+- Algorithm: Choose `LRU`, `OPTIMAL`.
 - Number of Frames: Select 1–10 physical frames.
 - Animation Speed (ms): Time per step in milliseconds.
 - Page Reference String: Comma-separated sequence (e.g., `7,0,1,2,0,3,...`).
