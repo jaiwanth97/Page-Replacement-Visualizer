@@ -1,0 +1,311 @@
+/* ==================== THEME VARIABLES (Warm, eye-friendly) ==================== */
+:root {
+    --bg-gradient-start: #eef2ff; /* indigo-50 */
+    --bg-gradient-end: #e0e7ff;   /* indigo-100 */
+    --brand: #4f46e5;             /* indigo-600 */
+    --brand-strong: #4338ca;      /* indigo-700 */
+    --text: #111827;              /* gray-900 */
+    --muted-text: #4b5563;        /* gray-600 */
+    --surface: #ffffff;
+    --surface-alt: #f8fafc;       /* slate-50 */
+    --border: #e5e7eb;            /* gray-200 */
+    --shadow: rgba(17, 24, 39, 0.08);
+    --hit: #16a34a;               /* green-600 */
+    --fault: #dc2626;             /* red-600 */
+    --replace: #f59e0b;           /* amber-500 */
+    --neutral: #94a3b8;           /* slate-400 */
+}
+
+/* ==================== GLOBAL STYLES ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: var(--text);
+}
+
+.container {
+    max-width: 1120px; /* narrower to reduce visual load */
+    margin: 0 auto;
+    background: var(--surface);
+    border-radius: 16px;
+    box-shadow: 0 10px 32px var(--shadow);
+    overflow: hidden;
+}
+
+/* ==================== HEADER ==================== */
+.header {
+    background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+    color: var(--text);
+    padding: 24px 30px;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 2.2em;
+    margin-bottom: 8px;
+}
+
+.header p {
+    font-size: 1em;
+    opacity: 0.9;
+}
+
+/* ==================== CONTROL PANEL ==================== */
+.control-panel {
+    background: var(--surface-alt);
+    padding: 22px 25px;
+    border-bottom: 1px solid var(--border);
+}
+
+.control-row {
+    display: flex;
+    gap: 18px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+
+.control-group {
+    flex: 1;
+    min-width: 200px;
+}
+
+.control-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--muted-text);
+    font-size: 0.9em;
+}
+
+.control-group input,
+.control-group select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    font-size: 1em;
+    transition: all 0.25s ease;
+    background: #fff;
+}
+
+.control-group input:focus,
+.control-group select:focus {
+    outline: none;
+    border-color: var(--brand);
+    box-shadow: 0 0 0 3px rgba(201, 123, 99, 0.15);
+}
+
+.btn-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-primary { background: var(--brand); color: white; }
+.btn-primary:hover { background: var(--brand-strong); transform: translateY(-1px); box-shadow: 0 6px 14px var(--shadow); }
+
+.btn-secondary { background: #64748b; color: white; }
+.btn-secondary:hover { background: #475569; transform: translateY(-1px); }
+
+.btn-success { background: var(--hit); color: white; }
+.btn-success:hover { background: #408a68; transform: translateY(-1px); }
+
+.btn-danger { background: var(--fault); color: white; }
+.btn-danger:hover { background: #bf5d51; transform: translateY(-1px); }
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+/* ==================== MAIN CONTENT AREA ==================== */
+.main-content {
+    display: flex;
+    gap: 20px;
+    padding: 22px 25px;
+}
+
+.visualization-area { flex: 2; min-width: 0; display: flex; flex-direction: column; gap: 18px; }
+.stats-panel { flex: 1; min-width: 300px; }
+
+/* ==================== CANVAS AREA ==================== */
+.canvas-container {
+    background: var(--surface-alt);
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 0;
+    min-height: 500px;
+    position: relative;
+}
+
+canvas {
+    width: 100%;
+    height: 500px;
+    background: white;
+    border-radius: 8px;
+}
+
+/* ==================== STATISTICS PANEL ==================== */
+.stats-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 18px;
+}
+
+.stats-card h3 {
+    color: var(--brand);
+    margin-bottom: 12px;
+    font-size: 1.2em;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    background: var(--surface-alt);
+    border-radius: 8px;
+    transition: background 0.2s ease;
+}
+
+.stat-item:hover { background: #f3ece4; }
+
+.stat-label { font-weight: 600; color: var(--muted-text); }
+.stat-value { font-weight: 700; color: var(--brand); font-size: 1.05em; }
+.stat-value.fault { color: var(--fault); }
+.stat-value.hit { color: var(--hit); }
+
+/* ==================== TIMELINE ==================== */
+.timeline-container {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+    margin-top: 0;
+}
+
+.timeline-container h4 { color: var(--brand); margin-bottom: 12px; }
+
+.timeline {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 8px 0;
+    scrollbar-gutter: stable both-edges;
+}
+
+.timeline-step {
+    min-width: 56px;
+    height: 56px;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border 0.2s ease;
+    background: white;
+}
+
+.timeline-step:hover { transform: scale(1.06); box-shadow: 0 6px 16px var(--shadow); }
+.timeline-step.active { border-color: var(--brand); background: var(--brand); color: white; font-weight: 700; }
+.timeline-step.fault { background: #fce9e5; border-color: var(--fault); }
+.timeline-step.hit { background: #e7f4ef; border-color: var(--hit); }
+.timeline-step.active.fault { background: var(--fault); color: white; }
+.timeline-step.active.hit { background: var(--hit); color: white; }
+
+.timeline-page { font-size: 1.1em; font-weight: bold; }
+.timeline-label { font-size: 0.7em; margin-top: 2px; }
+
+/* ==================== LEGEND ==================== */
+.legend {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+    margin-top: 18px;
+}
+
+.legend h4 { color: var(--brand); margin-bottom: 12px; }
+
+.legend-item { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.legend-color { width: 26px; height: 26px; border-radius: 5px; border: 2px solid #333; }
+
+/* ==================== CURRENT STEP INFO ==================== */
+.current-step-info {
+    background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+    color: var(--text);
+    padding: 18px;
+    border-radius: 12px;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.current-step-info h3 { margin-bottom: 8px; font-size: 1.3em; }
+.current-step-info p { font-size: 1.05em; line-height: 1.6; }
+
+/* ==================== DISCLOSURE (reduces info overload) ==================== */
+details.disclosure {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: white;
+    padding: 0 14px 12px 14px;
+}
+details.disclosure + details.disclosure { margin-top: 12px; }
+details.disclosure > summary {
+    cursor: pointer;
+    padding: 14px 0;
+    font-weight: 600;
+    color: var(--brand-strong);
+    list-style: none;
+}
+details.disclosure > summary::-webkit-details-marker { display: none; }
+details.disclosure[open] { background: #fff; }
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+@media (max-width: 1024px) {
+    .main-content { flex-direction: column; }
+    .stats-panel { width: 100%; }
+}
+
+@media (max-width: 768px) {
+    .header h1 { font-size: 1.7em; }
+    .control-row { flex-direction: column; }
+    .btn-group { width: 100%; }
+    button { flex: 1; justify-content: center; }
+}
+
+/* ==================== ICONS (SVG) ==================== */
+.icon { width: 20px; height: 20px; }
+
+

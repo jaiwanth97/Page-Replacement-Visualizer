@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Replacement Algorithm Visualizer - Operating System Simulator</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER SECTION -->
+        <div class="header">
+            <h1>🖥️ Page Replacement Algorithm Visualizer</h1>
+            <p>Interactive Operating System Memory Management Simulator</p>
+        </div>
+
+        <!-- CONTROL PANEL -->
+        <div class="control-panel">
+            <div class="control-row">
+                <div class="control-group">
+                    <label for="algorithm">Select Algorithm:</label>
+                    <select id="algorithm">
+                        <option value="FIFO">FIFO (First-In-First-Out)</option>
+                        <option value="LRU">LRU (Least Recently Used)</option>
+                        <option value="OPTIMAL">Optimal Page Replacement</option>
+                        <option value="CLOCK">Clock (Second Chance)</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label for="numFrames">Number of Frames (1-10):</label>
+                    <input type="number" id="numFrames" min="1" max="10" value="3">
+                </div>
+
+                <div class="control-group">
+                    <label for="animationSpeed">Animation Speed (ms):</label>
+                    <input type="number" id="animationSpeed" min="100" max="3000" step="100" value="1000">
+                </div>
+            </div>
+
+            <div class="control-row">
+                <div class="control-group" style="flex: 2;">
+                    <label for="referenceString">Page Reference String (comma-separated):</label>
+                    <input type="text" id="referenceString" value="7,0,1,2,0,3,0,4,2,3,0,3,2,1,2,0,1,7,0,1" placeholder="e.g., 7,0,1,2,0,3,0,4,2,3">
+                </div>
+            </div>
+
+            <div class="control-row">
+                <div class="btn-group">
+                    <button class="btn-success" id="initBtn">
+                        <span>🚀 Initialize Simulation</span>
+                    </button>
+                    <button class="btn-primary" id="playBtn" disabled>
+                        <span>▶️ Play</span>
+                    </button>
+                    <button class="btn-secondary" id="pauseBtn" disabled>
+                        <span>⏸️ Pause</span>
+                    </button>
+                    <button class="btn-secondary" id="stepBackBtn" disabled>
+                        <span>⏮️ Step Back</span>
+                    </button>
+                    <button class="btn-secondary" id="stepForwardBtn" disabled>
+                        <span>⏭️ Step Forward</span>
+                    </button>
+                    <button class="btn-danger" id="resetBtn" disabled>
+                        <span>🔄 Reset</span>
+                    </button>
+                    <button class="btn-success" id="exportBtn" disabled>
+                        <span>💾 Export Screenshot</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT AREA -->
+        <div class="main-content">
+            <!-- VISUALIZATION AREA -->
+            <div class="visualization-area">
+                <!-- Current Step Information -->
+                <div class="current-step-info" id="currentStepInfo">
+                    <h3>Ready to Start</h3>
+                    <p>Click "Initialize Simulation" to begin visualizing page replacement algorithms</p>
+                </div>
+
+                <!-- Canvas Container -->
+                <div class="canvas-container">
+                    <canvas id="visualizationCanvas"></canvas>
+                </div>
+
+                <!-- Timeline -->
+                <div class="timeline-container">
+                    <h4>📊 Execution Timeline (Click to Jump)</h4>
+                    <div class="timeline" id="timeline"></div>
+                </div>
+            </div>
+
+            <!-- STATISTICS PANEL -->
+            <div class="stats-panel">
+                <!-- Real-time Statistics -->
+                <div class="stats-card">
+                    <h3>📈 Real-time Statistics</h3>
+                    <div class="stat-item">
+                        <span class="stat-label">Algorithm:</span>
+                        <span class="stat-value" id="statAlgorithm">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Total References:</span>
+                        <span class="stat-value" id="statTotalRefs">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Current Step:</span>
+                        <span class="stat-value" id="statCurrentStep">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Page Faults:</span>
+                        <span class="stat-value fault" id="statPageFaults">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Page Hits:</span>
+                        <span class="stat-value hit" id="statPageHits">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Hit Ratio:</span>
+                        <span class="stat-value" id="statHitRatio">0.00%</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Fault Ratio:</span>
+                        <span class="stat-value fault" id="statFaultRatio">0.00%</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Completion:</span>
+                        <span class="stat-value" id="statCompletionSteps">0/0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Avg Step Time:</span>
+                        <span class="stat-value" id="statAvgStepMs">0 ms</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">ETA:</span>
+                        <span class="stat-value" id="statETA">0 ms</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Efficiency:</span>
+                        <span class="stat-value" id="statEfficiency">0%</span>
+                    </div>
+                </div>
+
+                <!-- Legend -->
+                <details class="disclosure legend">
+                    <summary>🎨 Color Legend</summary>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: var(--brand);"></div>
+                        <span>Current Page Reference</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: var(--hit);"></div>
+                        <span>Page Hit (Found in Memory)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: var(--fault);"></div>
+                        <span>Page Fault (Not in Memory)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: var(--replace);"></div>
+                        <span>Page Being Replaced</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #e9e2d9;"></div>
+                        <span>Empty Frame</span>
+                    </div>
+                </details>
+
+                <!-- Algorithm Information -->
+                <details class="disclosure">
+                    <summary>ℹ️ Algorithm Info</summary>
+                    <div class="stats-card" style="border: none; padding: 0; margin: 0;">
+                        <p id="algorithmInfo" style="line-height: 1.6; color: var(--muted-text);">
+                            Select an algorithm and initialize the simulation to see detailed information.
+                        </p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/algorithms.js"></script>
+    <script src="assets/js/metrics.js"></script>
+    <script src="assets/js/animation.js"></script>
+    <script src="assets/js/ui.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
